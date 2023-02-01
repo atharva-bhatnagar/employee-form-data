@@ -1,7 +1,14 @@
 
+import { useState } from "react";
 import "./App.css"
 
 function App() {
+  const [name,setName]=useState("")
+
+  const handleName=(e)=>{
+    console.log("Name==>",name)
+    setName(e.target.value)
+  }
   
   
   return (
@@ -10,7 +17,7 @@ function App() {
         <h1>Login</h1>
         <label>
           Name:
-          <input type="text"/>
+          <input type="text" onChange={handleName}/>
         </label>
       
         <label>

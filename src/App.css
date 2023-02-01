@@ -13,6 +13,7 @@ form{
     background-color: white;
     box-shadow: 0 0 3px black;
     padding: 10px;
+    min-width: 180px;
 }
 button{
     align-self: center;

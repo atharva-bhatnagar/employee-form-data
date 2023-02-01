@@ -1,14 +1,28 @@
-import { useState } from "react";
+
+import "./App.css"
 
 function App() {
-  const [counter,setCounter]=useState(0)
   
   
   return (
     <div className="App">
-      <p>{counter}</p>
-      <button onClick={()=>{setCounter(counter+1)}}>Increment</button><br/><br/>
-      <button onClick={()=>{setCounter(counter-1)}}>Decrement</button>
+      <form>
+        <h1>Login</h1>
+        <label>
+          Name:
+          <input type="text"/>
+        </label>
+      
+        <label>
+          Email:
+          <input type="email"/>
+        </label>
+        <label>
+          Password:
+          <input type="password" />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 }

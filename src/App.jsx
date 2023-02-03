@@ -1,53 +1,48 @@
 
-import { useState } from "react";
+import  {Form}  from "./components/Form";
+import {Data} from "./components/Data"
 import "./App.css"
+import { useState } from "react";
 
 function App() {
-  const [Name,setName]=useState("")
-  const [email,setEmail]=useState("")
-  const [pass,setPass]=useState("")
 
-  const handleName=(e)=>{
-    console.log("Name==>",Name)
-    setName(e.target.value)
-  }
-  const handleEmail=(e)=>{
-    console.log("Email==>",email)
-    setEmail(e.target.value)
-  }
-  const handlePass=(e)=>{
-    console.log("Password==>",pass)
-    setPass(e.target.value)
-  }
-  const handleSubmit=(e)=>{
+  const [submit,setSubmit]=useState(false)
+  const [data,setData]=useState([])
+  const [name,setName]=useState('')
+  const [designation,setDesignation]=useState('')
+  const [rating,setRating]=useState('')
+  
+  function handleSubmit(e){
     e.preventDefault()
-    if(Name!==""&&email!==""&&pass!==""){
-      alert("submitted Successfuly!!!")
+
+
+    if(name!==''&&rating!==''&&designation!==''){
+    
+      setSubmit(true)
+      setData(d=>[...d,{name:name,designation:designation,rating:rating}])
+      console.log(data)
+      setName('')
+      setDesignation('')
+      setRating('')
     }else{
-      alert("Please check your inputs")
+      setSubmit(true)
     }
   }
   
-  
   return (
-    <div className="App" onSubmit={handleSubmit}>
-      <form>
-        <h1>Login</h1>
-        <label>
-          Name:
-          <input type="text" onChange={handleName} name="name" value={Name}/>
-        </label>
+    <div className="App">
       
-        <label>
-          Email:
-          <input type="email" onChange={handleEmail} name="email" value={email}/>
-        </label>
-        <label>
-          Password:
-          <input type="password" onChange={handlePass} name="password" value={pass}/>
-        </label>
-        <button type="submit">Submit</button>
-      </form>
+      {
+        (submit)?<Data data={data} setSubmit={setSubmit}/>:<Form handleSubmit={handleSubmit}
+      name={name}
+      designation={designation}
+      rating={rating}
+      setName={setName}
+      setDesignation={setDesignation}
+      setRating={setRating}
+      />
+      }
+      
     </div>
   );
 }
